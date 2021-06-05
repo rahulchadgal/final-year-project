@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='card.css')}}">
+
+
+
+<!-- CSS only -->
+<div class="container bootstrap snippets bootdeys">
+<div class="row">
+{% for row in blogsss %}
+
+<div class="col-md-4 col-sm-10 content-card">
+        <div class="card-big-shadow">
+            <div class="card card-just-text" data-background="color" data-color="purple" data-radius="none">
+                <div class="content">
+                    <h6 class="category">{{row[1]}}</h6>
+                    <h4 class="title">{{row[2]}}</a></h4>
+                    <p class="description">{{row[0]}} </p>
+                </div>
+            </div> <!-- end card -->
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+</div>
+{% endblock %}

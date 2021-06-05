@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style>
+    body {
+      background-image: url('/static/images/s.jpg');
+
+  background-size: cover;
+    }
+    </style>
+  </head>
+  <body >
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{url_for('core.test')}}">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{ url_for('core.index') }}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="#">Home</a></li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Cities <span class="glyphicon glyphicon-menu-down"></span> </a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('core.delhi') }}">Delhi</a></li>
+          <li><a href="{{ url_for('core.mumbai') }}">Mumbai</a></li>
+          <li><a href="{{ url_for('core.banglore') }}">Banglore</a></li>
+          <li><a href="{{ url_for('core.kolkata') }}">kolkata</a></li>
+        </ul>
+      </li>
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('blog_posts.create_post') }}">Create Post</a></li>
+      <li class="active"><a href="{{ url_for('core.hosp') }}">hospital</a></li>
+      <li class="active"><a href="{{ url_for('core.location') }}">location</a></li>
+        {% endif %}
+    </ul>
+    {% if current_user.is_authenticated %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{ url_for('users.account') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+      <li><a href="{{ url_for('users.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+    {% else %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{ url_for('users.register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="{{ url_for('users.login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+
+<div class="container">
+  {% block content %}
+
+  {% endblock %}
+</div>
+
+
+  </body>
+</html>
